@@ -99,21 +99,9 @@ jobs:
           tree .
           cloc sdeval
           cloc test
-      - name: Prepare dataset
-        uses: nick-fields/retry@v2
-        env:
-          CI: 'true'
-        with:
-          shell: bash
-          timeout_minutes: 20
-          max_attempts: 5
-          retry_on: any
-          command: |
-            make dataset
       - name: Run unittest
         env:
           CI: 'true'
-          REMOTE_PIXIV_SESSION_INDEX_URL: ${{ secrets.REMOTE_PIXIV_SESSION_INDEX_URL }}
         shell: bash
         run: |
           make unittest IS_WIN=${{ env.IS_WIN }} IS_MAC=${{ env.IS_MAC }}
