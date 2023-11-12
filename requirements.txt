@@ -1,0 +1,6 @@
+hbutils>=0.9.0
+pillow
+numpy
+huggingface_hub
+tqdm
+dghs-imgutils>=0.2.10
