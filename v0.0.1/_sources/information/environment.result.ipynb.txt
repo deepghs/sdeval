@@ -29,10 +29,10 @@
    "execution_count": 1,
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2023-11-15T15:19:18.123720Z",
-     "iopub.status.busy": "2023-11-15T15:19:18.123488Z",
-     "iopub.status.idle": "2023-11-15T15:19:19.304979Z",
-     "shell.execute_reply": "2023-11-15T15:19:19.304217Z"
+     "iopub.execute_input": "2023-11-15T15:20:05.722011Z",
+     "iopub.status.busy": "2023-11-15T15:20:05.721382Z",
+     "iopub.status.idle": "2023-11-15T15:20:06.974509Z",
+     "shell.execute_reply": "2023-11-15T15:20:06.973511Z"
     },
     "pycharm": {
      "name": "#%%\n"
@@ -45,10 +45,10 @@
      "text": [
       "OS: Linux-6.2.0-1015-azure-x86_64-with-glibc2.34\n",
       "Python: CPython 3.8.18\n",
-      "CPU Brand: AMD EPYC 7763 64-Core Processor\n",
-      "CPU Count: 4\n",
-      "CPU Freq: 2888.1845 MHz\n",
-      "Memory Size: 15.607 GiB\n",
+      "CPU Brand: Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz\n",
+      "CPU Count: 2\n",
+      "CPU Freq: 2294.686 MHz\n",
+      "Memory Size: 6.760 GiB\n",
       "Has CUDA: No\n"
      ]
     }
