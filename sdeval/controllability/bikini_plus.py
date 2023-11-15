@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import warnings
 import weakref
 from functools import lru_cache, partial
 from queue import Queue
@@ -39,13 +40,13 @@ class ACNode:
             self.fail = self
         else:
             if fail_ref is None:
-                raise ValueError('Fail reference not given for non-root node.')
+                raise ValueError('Fail reference not given for non-root node.')  # pragma: no cover
             self.fail = fail_ref
 
     @property
     def fail(self) -> Optional['ACNode']:
         if self._fail_ref is None:
-            return None
+            return None  # pragma: no cover
         else:
             return self._fail_ref()
 
@@ -128,6 +129,20 @@ class TaggerACModel:
                 node = self._root_node
 
         return sorted(retval, key=lambda x: (-x[1], x[0]))
+
+    def get_tag(self, tag_text):
+        tokens = _tokenize(tag_text)
+        node = self._root_node
+        for token in tokens:
+            if token not in node.children:
+                raise ValueError(f'Unknown tag {tag_text!r}.')
+
+            node = node.children[token]
+
+        if node.has_value:
+            return node.value['name']
+        else:
+            raise ValueError(f'Unknown tag {tag_text!r}.')
 
 
 def _deepdanbooru_tagging(image: Image.Image, use_real_name: bool = False,
@@ -222,7 +237,16 @@ class BikiniPlusMetrics:
         self._tagger_func = partial(_TAGGING_METHODS[tagger], **(tagger_cfgs or {}))
         self._ac_model = TaggerACModel(_WD14_TAGGER_MODELS.get(tagger, tagger))
         self._base_num = base_num
-        self._tag_blacklist_set = set(tag_blacklist or [])
+
+        self._tag_blacklist_set = set()
+        _unknown_blacklist_tags = set()
+        for tag in (tag_blacklist or []):
+            try:
+                self._tag_blacklist_set.add(self._ac_model.get_tag(tag))
+            except ValueError:
+                _unknown_blacklist_tags.add(tag)
+        if _unknown_blacklist_tags:
+            warnings.warn(f'Unknown tags for blacklist: {sorted(_unknown_blacklist_tags)}.')
         self.silent = silent
 
     def _calculate_one_image(self, img: Image.Image, prompt: str, neg_prompt: str):
@@ -231,6 +255,9 @@ class BikiniPlusMetrics:
         neg_prompt_tags = self._ac_model.extract_tags_from_text(neg_prompt)
         neg_prompt_tags = [(tag, value) for tag, value in neg_prompt_tags if tag not in self._tag_blacklist_set]
         tagged_tags = self._tagger_func(img)
+
+        if not prompt_tags and not neg_prompt_tags:
+            return 1.0
 
         vs = np.array([
             *(tagged_tags.get(tag, 0.0) for tag, value in prompt_tags),
@@ -242,8 +269,11 @@ class BikiniPlusMetrics:
         ])
         return ((vs * ws).sum() / ws.sum()).item()
 
-    def value(self, images: PromptedImagesTyping, silent: bool = False):
+    def score(self, images: PromptedImagesTyping, silent: bool = False):
         image_list = list(_yield_images(images))
+        if not image_list:
+            raise FileNotFoundError(f'Images for calculating bikini plus score not provided - {images}.')
+
         return np.array([
             self._calculate_one_image(img, prompt, neg_prompt)
             for img, prompt, neg_prompt in tqdm(image_list, silent=self.silent if silent is None else silent)

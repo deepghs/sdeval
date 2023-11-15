@@ -23,11 +23,11 @@ def aicorrupt_metrics():
 # noinspection PyCallingNonCallable
 @pytest.mark.unittest
 class TestCorruptAICorrupt:
-    def test_aicorrupt(self, aicorrupt_o, aicorrupt_x, aicorrupt_metrics):
-        assert aicorrupt_metrics.corrupt_score(aicorrupt_o) < 0.03
-        assert aicorrupt_metrics.corrupt_score(aicorrupt_x) >= 0.95
+    def test_score(self, aicorrupt_o, aicorrupt_x, aicorrupt_metrics):
+        assert aicorrupt_metrics.score(aicorrupt_o) >= 0.97
+        assert aicorrupt_metrics.score(aicorrupt_x) < 0.05
 
     @isolated_directory()
     def test_aicorrupt_failed(self, aicorrupt_metrics):
         with pytest.raises(FileNotFoundError):
-            _ = aicorrupt_metrics.corrupt_score('.')
+            _ = aicorrupt_metrics.score('.')

@@ -38,48 +38,11 @@ def ccip_metric(ccip_init):
 
 @pytest.mark.unittest
 class TestFidelityCCIP:
-    def test_diff_score(self, ccip_metric, ccip_init, ccip_x, ccip_raw, ccip_trained):
-        diff, score = ccip_metric.diff_score(ccip_init)
-        assert diff < 0.1
-        assert score >= 0.95
-
-        diff, score = ccip_metric.diff_score(ccip_x)
-        assert diff >= 0.3
-        assert score <= 0.05
-
-        diff, score = ccip_metric.diff_score(ccip_raw)
-        assert diff >= 0.05
-        assert score < 0.9
-
-        diff, score = ccip_metric.diff_score(ccip_trained)
-        assert diff < 0.1
-        assert score >= 0.95
-
-    def test_diff(self, ccip_metric, ccip_init, ccip_x, ccip_raw, ccip_trained):
-        diff = ccip_metric.diff(ccip_init)
-        assert diff < 0.1
-
-        diff = ccip_metric.diff(ccip_x)
-        assert diff >= 0.3
-
-        diff = ccip_metric.diff(ccip_raw)
-        assert diff >= 0.05
-
-        diff = ccip_metric.diff(ccip_trained)
-        assert diff < 0.1
-
     def test_score(self, ccip_metric, ccip_init, ccip_x, ccip_raw, ccip_trained):
-        score = ccip_metric.score(ccip_init)
-        assert score >= 0.95
-
-        score = ccip_metric.score(ccip_x)
-        assert score <= 0.05
-
-        score = ccip_metric.score(ccip_raw)
-        assert score < 0.9
-
-        score = ccip_metric.score(ccip_trained)
-        assert score >= 0.95
+        assert ccip_metric.score(ccip_init) >= 0.95
+        assert ccip_metric.score(ccip_x) <= 0.05
+        assert ccip_metric.score(ccip_raw) < 0.9
+        assert ccip_metric.score(ccip_trained) >= 0.95
 
     def test_failed_init(self, empty_dir):
         with pytest.raises(FileNotFoundError):
@@ -87,4 +50,4 @@ class TestFidelityCCIP:
 
     def test_failed_calc(self, empty_dir, ccip_metric):
         with pytest.raises(FileNotFoundError):
-            ccip_metric.diff_score(empty_dir)
+            ccip_metric.score(empty_dir)

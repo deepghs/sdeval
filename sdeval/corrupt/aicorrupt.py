@@ -8,7 +8,7 @@ from huggingface_hub import hf_hub_download
 from imgutils.data import rgb_encode, ImageTyping, load_image
 from imgutils.utils import open_onnx_model
 
-from ..utils import ImagesTyping, load_images
+from ..utils import ImagesTyping, load_images, tqdm
 
 _DEFAULT_MODEL_NAME = 'caformer_s36_v0_focal'
 
@@ -57,13 +57,19 @@ def get_ai_corrupted(image: ImageTyping, model_name: str = _DEFAULT_MODEL_NAME) 
 
 
 class AICorruptMetrics:
-    def __init__(self, model_name: str = _DEFAULT_MODEL_NAME):
+    def __init__(self, model_name: str = _DEFAULT_MODEL_NAME,
+                 silent: bool = False, tqdm_desc: str = None):
         self._model_name = model_name
+        self.silent = silent
+        self.tqdm_desc = tqdm_desc or self.__class__.__name__
 
-    def corrupt_score(self, images: ImagesTyping):
+    def score(self, images: ImagesTyping, silent: bool = None):
         image_list = load_images(images)
         if not image_list:
             raise FileNotFoundError(f'Images for calculating AI corrupt score not provided - {images}.')
 
-        scores = np.array([get_ai_corrupted(image, model_name=self._model_name)['corrupted'] for image in image_list])
-        return scores.mean().item()
+        scores = np.array([
+            get_ai_corrupted(image, model_name=self._model_name)['corrupted']
+            for image in tqdm(image_list, silent=self.silent if silent is None else silent, desc=self.tqdm_desc)
+        ])
+        return 1.0 - scores.mean().item()
