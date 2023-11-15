@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sdeval.controllability.bikini_plus &mdash; sdeval 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/nbsphinx-code-cells.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/nbsphinx-code-cells.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> sdeval
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/quick_start/index.html">Quick Start</a></li>
+</ul>
+<p><span class="caption-text">Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../information/environment.result.html">Run Environment Information</a></li>
+</ul>
+<p><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_doc/config/index.html">sdeval.config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_doc/controllability/index.html">sdeval.controllability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_doc/corrupt/index.html">sdeval.corrupt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_doc/fidelity/index.html">sdeval.fidelity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_doc/utils/index.html">sdeval.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">sdeval</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sdeval.controllability.bikini_plus</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+    
+    
+  <h1>Source code for sdeval.controllability.bikini_plus</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Overview:</span>
+<span class="sd">    Bikini plus score.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">weakref</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span><span class="p">,</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Queue</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">UnidentifiedImageError</span>
+<span class="kn">from</span> <span class="nn">hbutils.string</span> <span class="kn">import</span> <span class="n">singular_form</span>
+<span class="kn">from</span> <span class="nn">huggingface_hub</span> <span class="kn">import</span> <span class="n">hf_hub_download</span>
+<span class="kn">from</span> <span class="nn">imgutils.data</span> <span class="kn">import</span> <span class="n">load_image</span>
+<span class="kn">from</span> <span class="nn">imgutils.sd</span> <span class="kn">import</span> <span class="n">get_sdmeta_from_image</span>
+<span class="kn">from</span> <span class="nn">imgutils.tagging</span> <span class="kn">import</span> <span class="n">get_deepdanbooru_tags</span><span class="p">,</span> <span class="n">get_wd14_tags</span><span class="p">,</span> <span class="n">get_mldanbooru_tags</span>
+
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">ModuleNotFoundError</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Literal</span>
+
+<span class="n">_NOTHING</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">ACNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">segments</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+                 <span class="n">value</span><span class="o">=</span><span class="n">_NOTHING</span><span class="p">,</span> <span class="n">fail_ref</span><span class="p">:</span> <span class="s1">&#39;ACNode&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">is_root</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        AC (Aho-Corasick) Node class for fast tag matching.</span>
+
+<span class="sd">        :param segments: Tuple of segments representing a path in the AC trie.</span>
+<span class="sd">        :type segments: Tuple[str, ...]</span>
+<span class="sd">        :param value: Value associated with the node, if any.</span>
+<span class="sd">        :param fail_ref: Reference to the fail node.</span>
+<span class="sd">        :type fail_ref: ACNode</span>
+<span class="sd">        :param is_root: Indicates if the node is the root of the AC trie.</span>
+<span class="sd">        :type is_root: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">segments</span> <span class="o">=</span> <span class="n">segments</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">_NOTHING</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">has_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">has_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">value</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fail_ref</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">is_root</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fail</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fail_ref</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Fail reference not given for non-root node.&#39;</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fail</span> <span class="o">=</span> <span class="n">fail_ref</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fail</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;ACNode&#39;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the fail node reference.</span>
+
+<span class="sd">        :return: Reference to the fail node.</span>
+<span class="sd">        :rtype: Optional[ACNode]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fail_ref</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fail_ref</span><span class="p">()</span>
+
+    <span class="nd">@fail</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">fail</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s1">&#39;ACNode&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the fail node.</span>
+
+<span class="sd">        :param node: The fail node.</span>
+<span class="sd">        :type node: ACNode</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fail_ref</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+
+<span class="nd">@lru_cache</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">_tag_list</span><span class="p">(</span><span class="n">tagger_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the tag list for a given tagger.</span>
+
+<span class="sd">    :param tagger_name: Name of the tagger.</span>
+<span class="sd">    :type tagger_name: str</span>
+
+<span class="sd">    :return: List of tags.</span>
+<span class="sd">    :rtype: List[dict]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">hf_hub_download</span><span class="p">(</span>
+            <span class="s1">&#39;deepghs/tagger_vocabs&#39;</span><span class="p">,</span>
+            <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">tagger_name</span><span class="si">}</span><span class="s1">/tags.json&#39;</span><span class="p">,</span>
+            <span class="n">repo_type</span><span class="o">=</span><span class="s1">&#39;dataset&#39;</span>
+    <span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Tokenize the given text.</span>
+
+<span class="sd">    :param text: Input text.</span>
+<span class="sd">    :type text: str</span>
+
+<span class="sd">    :return: List of tokens.</span>
+<span class="sd">    :rtype: List[str]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">singular_form</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\W_]+&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="k">if</span> <span class="n">word</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">TaggerACModel</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tagger_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Aho-Corasick (AC) model for fast tag matching.</span>
+
+<span class="sd">        :param tagger_name: Name of the tagger.</span>
+<span class="sd">        :type tagger_name: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span> <span class="o">=</span> <span class="n">ACNode</span><span class="p">((),</span> <span class="n">is_root</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">_tag_list</span><span class="p">(</span><span class="n">tagger_name</span><span class="p">):</span>
+            <span class="n">words_list</span> <span class="o">=</span> <span class="n">tag</span><span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">words_list</span><span class="p">:</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                        <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">ACNode</span><span class="p">(</span>
+                            <span class="n">segments</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">words</span><span class="p">[:</span><span class="n">i</span><span class="p">]),</span>
+                            <span class="n">value</span><span class="o">=</span><span class="n">tag</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="k">else</span> <span class="n">_NOTHING</span><span class="p">,</span>
+                            <span class="n">fail_ref</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tag</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">])</span>
+
+        <span class="n">queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+        <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span><span class="p">)</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+            <span class="n">current_node</span><span class="p">:</span> <span class="n">ACNode</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">current_node</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">current_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span> <span class="ow">and</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">current_node</span><span class="o">.</span><span class="n">fail</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                    <span class="n">child</span><span class="o">.</span><span class="n">fail</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">fail</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+                <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="n">counts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mean_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_counts</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">extract_tags_from_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extract tags from the given text.</span>
+
+<span class="sd">        :param text: Input text.</span>
+<span class="sd">        :type text: str</span>
+
+<span class="sd">        :return: List of tuples containing tags and their values.</span>
+<span class="sd">        :rtype: List[Tuple[str, float]]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="n">_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">_exist_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                    <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">fail</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+            <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">token</span><span class="p">]</span>
+                <span class="n">cur_node</span> <span class="o">=</span> <span class="n">node</span>
+                <span class="k">while</span> <span class="n">cur_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">cur_node</span><span class="o">.</span><span class="n">has_value</span><span class="p">:</span>
+                        <span class="n">tag_info</span> <span class="o">=</span> <span class="n">cur_node</span><span class="o">.</span><span class="n">value</span>
+                        <span class="k">if</span> <span class="n">tag_info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_exist_names</span><span class="p">:</span>
+                            <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">tag_info</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mean_count</span>
+                            <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">tag_info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">value</span><span class="p">))</span>
+                            <span class="n">_exist_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tag_info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+                    <span class="n">cur_node</span> <span class="o">=</span> <span class="n">cur_node</span><span class="o">.</span><span class="n">fail</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span>
+
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">retval</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="k">def</span> <span class="nf">get_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag_text</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the tag from the given tag text.</span>
+
+<span class="sd">        :param tag_text: Input tag text.</span>
+<span class="sd">        :type tag_text: str</span>
+
+<span class="sd">        :return: Tag name.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="n">_tokenize</span><span class="p">(</span><span class="n">tag_text</span><span class="p">)</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_node</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Unknown tag </span><span class="si">{</span><span class="n">tag_text</span><span class="si">!r}</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">token</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">has_value</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Unknown tag </span><span class="si">{</span><span class="n">tag_text</span><span class="si">!r}</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_deepdanbooru_tagging</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">use_real_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                          <span class="n">general_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">character_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">kwargs</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">characters</span> <span class="o">=</span> <span class="n">get_deepdanbooru_tags</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">use_real_name</span><span class="p">,</span> <span class="n">general_threshold</span><span class="p">,</span> <span class="n">character_threshold</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="n">features</span><span class="p">,</span> <span class="o">**</span><span class="n">characters</span><span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">_wd14_tagging</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                  <span class="n">general_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">character_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">kwargs</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">characters</span> <span class="o">=</span> <span class="n">get_wd14_tags</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">general_threshold</span><span class="p">,</span> <span class="n">character_threshold</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="n">features</span><span class="p">,</span> <span class="o">**</span><span class="n">characters</span><span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">_mldanbooru_tagging</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">use_real_name</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">general_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">kwargs</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">get_mldanbooru_tags</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">use_real_name</span><span class="p">,</span> <span class="n">general_threshold</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">features</span>
+
+
+<span class="n">_WD14_TAGGER_MODELS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;wd14_swinv2&quot;</span><span class="p">:</span> <span class="s2">&quot;wd-v1-4-swinv2-tagger-v2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;wd14_convnext&quot;</span><span class="p">:</span> <span class="s2">&quot;wd-v1-4-convnext-tagger-v2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;wd14_convnextv2&quot;</span><span class="p">:</span> <span class="s2">&quot;wd-v1-4-convnextv2-tagger-v2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;wd14_vit&quot;</span><span class="p">:</span> <span class="s2">&quot;wd-v1-4-vit-tagger-v2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;wd14_moat&quot;</span><span class="p">:</span> <span class="s2">&quot;wd-v1-4-moat-tagger-v2&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">_TAGGING_METHODS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;deepdanbooru&#39;</span><span class="p">:</span> <span class="n">_deepdanbooru_tagging</span><span class="p">,</span>
+    <span class="s1">&#39;wd14_vit&#39;</span><span class="p">:</span> <span class="n">partial</span><span class="p">(</span><span class="n">_wd14_tagging</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;ViT&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;wd14_convnext&#39;</span><span class="p">:</span> <span class="n">partial</span><span class="p">(</span><span class="n">_wd14_tagging</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;ConvNext&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;wd14_convnextv2&#39;</span><span class="p">:</span> <span class="n">partial</span><span class="p">(</span><span class="n">_wd14_tagging</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;ConvNextV2&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;wd14_swinv2&#39;</span><span class="p">:</span> <span class="n">partial</span><span class="p">(</span><span class="n">_wd14_tagging</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;SwinV2&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;wd14_moat&#39;</span><span class="p">:</span> <span class="n">partial</span><span class="p">(</span><span class="n">_wd14_tagging</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;MOAT&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;mldanbooru&#39;</span><span class="p">:</span> <span class="n">_mldanbooru_tagging</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">TaggingMethodTyping</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">[</span>
+    <span class="s1">&#39;deepdanbooru&#39;</span><span class="p">,</span> <span class="s1">&#39;mldanbooru&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;wd14_vit&#39;</span><span class="p">,</span> <span class="s1">&#39;wd14_convnext&#39;</span><span class="p">,</span> <span class="s1">&#39;wd14_convnextv2&#39;</span><span class="p">,</span> <span class="s1">&#39;wd14_swinv2&#39;</span><span class="p">,</span> <span class="s1">&#39;wd14_moat&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">PromptedImageTyping</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span>
+    <span class="n">Tuple</span><span class="p">[</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span>
+    <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="nb">str</span>
+<span class="p">]</span>
+<span class="n">PromptedImagesTyping</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">PromptedImageTyping</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">PromptedImageTyping</span><span class="p">]]</span>
+
+
+<span class="k">def</span> <span class="nf">_yield_images</span><span class="p">(</span><span class="n">images</span><span class="p">:</span> <span class="n">PromptedImagesTyping</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Yield images along with prompts and negative prompts.</span>
+
+<span class="sd">    :param images: Input images with prompts and negative prompts.</span>
+<span class="sd">    :type images: PromptedImagesTyping</span>
+
+<span class="sd">    :return: Iterator of image, prompt, and negative prompt tuples.</span>
+<span class="sd">    :rtype: Iterator[Tuple[Image.Image, str, str]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
+            <span class="k">yield from</span> <span class="n">_yield_images</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">images</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">images</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                <span class="k">yield from</span> <span class="n">_yield_images</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">file</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">prompt</span><span class="p">),</span> <span class="n">neg_prompt</span> <span class="o">=</span> <span class="n">images</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">img</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">neg_prompt</span> <span class="o">=</span> <span class="n">images</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Unknown tuple for prompted image - </span><span class="si">{</span><span class="n">images</span><span class="si">!r}</span><span class="s1">.&#39;</span><span class="p">)</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+            <span class="n">img</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">img</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">force_background</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+                <span class="n">img</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+                <span class="n">sdmeta</span> <span class="o">=</span> <span class="n">get_sdmeta_from_image</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sdmeta</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">prompt</span><span class="p">,</span> <span class="n">neg_prompt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">prompt</span><span class="p">,</span> <span class="n">neg_prompt</span> <span class="o">=</span> <span class="n">sdmeta</span><span class="o">.</span><span class="n">prompt</span><span class="p">,</span> <span class="n">sdmeta</span><span class="o">.</span><span class="n">neg_prompt</span>
+            <span class="k">except</span> <span class="n">UnidentifiedImageError</span><span class="p">:</span>
+                <span class="k">return</span>
+
+        <span class="k">yield</span> <span class="n">img</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">neg_prompt</span>
+
+
+<div class="viewcode-block" id="BikiniPlusMetrics"><a class="viewcode-back" href="../../../api_doc/controllability/bikini_plus.html#sdeval.controllability.bikini_plus.BikiniPlusMetrics">[docs]</a><span class="k">class</span> <span class="nc">BikiniPlusMetrics</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for evaluating the appropriateness of AI-generated images based on prompts and taggers.</span>
+
+<span class="sd">    The `BikiniPlusMetrics` class assesses the compatibility of AI-generated images with given prompts using taggers.</span>
+
+<span class="sd">    :param tagger: The tagging method to use. Default is &#39;wd14_convnextv2&#39;.</span>
+<span class="sd">    :type tagger: TaggingMethodTyping</span>
+<span class="sd">    :param tagger_cfgs: Optional configuration parameters for the chosen tagger. Default is None.</span>
+<span class="sd">    :type tagger_cfgs: Optional[dict]</span>
+<span class="sd">    :param base_num: Base number for weighting prompt tags. Default is 1.5.</span>
+<span class="sd">    :type base_num: float</span>
+<span class="sd">    :param tag_blacklist: Optional list of tags to exclude from evaluation. Default is None.</span>
+<span class="sd">    :type tag_blacklist: Optional[List[str]]</span>
+<span class="sd">    :param silent: If True, suppresses progress bars and additional output during calculation. Default is False.</span>
+<span class="sd">    :type silent: bool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BikiniPlusMetrics.__init__"><a class="viewcode-back" href="../../../api_doc/controllability/bikini_plus.html#sdeval.controllability.bikini_plus.BikiniPlusMetrics.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tagger</span><span class="p">:</span> <span class="n">TaggingMethodTyping</span> <span class="o">=</span> <span class="s1">&#39;wd14_convnextv2&#39;</span><span class="p">,</span>
+                 <span class="n">tagger_cfgs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">base_num</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
+                 <span class="n">tag_blacklist</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tagger</span> <span class="o">=</span> <span class="n">tagger</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tagger_func</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">_TAGGING_METHODS</span><span class="p">[</span><span class="n">tagger</span><span class="p">],</span> <span class="o">**</span><span class="p">(</span><span class="n">tagger_cfgs</span> <span class="ow">or</span> <span class="p">{}))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ac_model</span> <span class="o">=</span> <span class="n">TaggerACModel</span><span class="p">(</span><span class="n">_WD14_TAGGER_MODELS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tagger</span><span class="p">,</span> <span class="n">tagger</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_base_num</span> <span class="o">=</span> <span class="n">base_num</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tag_blacklist_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">_unknown_blacklist_tags</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="p">(</span><span class="n">tag_blacklist</span> <span class="ow">or</span> <span class="p">[]):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tag_blacklist_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ac_model</span><span class="o">.</span><span class="n">get_tag</span><span class="p">(</span><span class="n">tag</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">_unknown_blacklist_tags</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_unknown_blacklist_tags</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Unknown tags for blacklist: </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">_unknown_blacklist_tags</span><span class="p">)</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">silent</span> <span class="o">=</span> <span class="n">silent</span></div>
+
+    <span class="k">def</span> <span class="nf">_calculate_one_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">neg_prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate the bikini plus score for a single image.</span>
+
+<span class="sd">        This method computes the bikini plus score for a single image based on the provided prompts.</span>
+
+<span class="sd">        :param img: The input image.</span>
+<span class="sd">        :type img: Image.Image</span>
+<span class="sd">        :param prompt: The positive prompt for evaluation.</span>
+<span class="sd">        :type prompt: str</span>
+<span class="sd">        :param neg_prompt: The negative prompt for evaluation.</span>
+<span class="sd">        :type neg_prompt: str</span>
+
+<span class="sd">        :return: The calculated bikini plus score for the image.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">prompt_tags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ac_model</span><span class="o">.</span><span class="n">extract_tags_from_text</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+        <span class="n">prompt_tags</span> <span class="o">=</span> <span class="p">[(</span><span class="n">tag</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">prompt_tags</span> <span class="k">if</span> <span class="n">tag</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tag_blacklist_set</span><span class="p">]</span>
+        <span class="n">neg_prompt_tags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ac_model</span><span class="o">.</span><span class="n">extract_tags_from_text</span><span class="p">(</span><span class="n">neg_prompt</span><span class="p">)</span>
+        <span class="n">neg_prompt_tags</span> <span class="o">=</span> <span class="p">[(</span><span class="n">tag</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">neg_prompt_tags</span> <span class="k">if</span> <span class="n">tag</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tag_blacklist_set</span><span class="p">]</span>
+        <span class="n">tagged_tags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tagger_func</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">prompt_tags</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">neg_prompt_tags</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">1.0</span>
+
+        <span class="n">vs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="o">*</span><span class="p">(</span><span class="n">tagged_tags</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">prompt_tags</span><span class="p">),</span>
+            <span class="o">*</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">tagged_tags</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span> <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">neg_prompt_tags</span><span class="p">),</span>
+        <span class="p">])</span>
+        <span class="n">ws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="o">*</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_num</span> <span class="o">**</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">prompt_tags</span><span class="p">),</span>
+            <span class="o">*</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_num</span> <span class="o">**</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">neg_prompt_tags</span><span class="p">),</span>
+        <span class="p">])</span>
+        <span class="k">return</span> <span class="p">((</span><span class="n">vs</span> <span class="o">*</span> <span class="n">ws</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">ws</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<div class="viewcode-block" id="BikiniPlusMetrics.score"><a class="viewcode-back" href="../../../api_doc/controllability/bikini_plus.html#sdeval.controllability.bikini_plus.BikiniPlusMetrics.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">images</span><span class="p">:</span> <span class="n">PromptedImagesTyping</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate the average bikini plus score for a set of images.</span>
+
+<span class="sd">        This method computes the average bikini plus score for a set of images based on the provided prompts.</span>
+
+<span class="sd">        :param images: The set of images with associated positive and negative prompts.</span>
+<span class="sd">        :type images: PromptedImagesTyping</span>
+<span class="sd">        :param silent: If True, suppresses progress bars and additional output during calculation. Default is False.</span>
+<span class="sd">        :type silent: bool</span>
+
+<span class="sd">        :return: The average bikini plus score for the set of images.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">image_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_yield_images</span><span class="p">(</span><span class="n">images</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">image_list</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Images for calculating bikini plus score not provided - </span><span class="si">{</span><span class="n">images</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_one_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">neg_prompt</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">img</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">neg_prompt</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">image_list</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">silent</span> <span class="k">if</span> <span class="n">silent</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">silent</span><span class="p">)</span>
+        <span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></div></div>
+</pre></div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, narugo1992
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: v0.0.1
+    <span class="fa fa-caret-down"></span>
+  </span>
+        <div class="rst-other-versions">
+                <dl>
+                    <dt>Tags</dt>
+                        <dd><a href="bikini_plus.html">v0.0.1</a></dd>
+                </dl>
+                <dl>
+                    <dt>Branches</dt>
+                        <dd><a href="../../../../main/index.html">main</a></dd>
+                </dl>
+        </div>
+    </div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
