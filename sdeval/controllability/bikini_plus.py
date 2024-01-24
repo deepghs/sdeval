@@ -279,7 +279,7 @@ def _yield_images(images: PromptedImagesTyping) -> Iterator[Tuple[Image.Image, s
     elif isinstance(images, str) and os.path.isdir(images):
         for root, dirs, files in os.walk(images):
             for file in files:
-                yield from _yield_images(os.path.join(images, root, file))
+                yield from _yield_images(os.path.join(root, file))
     else:
         if isinstance(images, tuple):
             if len(images) == 2:

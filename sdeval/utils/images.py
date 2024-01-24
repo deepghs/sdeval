@@ -25,7 +25,7 @@ def _yield_images(images: ImagesTyping) -> Iterator[Image.Image]:
     elif isinstance(images, str) and os.path.isdir(images):
         for root, dirs, files in os.walk(images):
             for file in files:
-                yield from _yield_images(os.path.join(images, root, file))
+                yield from _yield_images(os.path.join(root, file))
     else:
         try:
             image = load_image(images)

@@ -1,3 +1,5 @@
+import os.path
+
 import numpy as np
 import pytest
 from hbutils.system import TemporaryDirectory
@@ -8,7 +10,7 @@ from test.testings import get_testfile
 
 @pytest.fixture(scope='session')
 def ccip_init():
-    return get_testfile('ccip', 'init')
+    return os.path.relpath(get_testfile('ccip', 'init'), os.path.abspath('.'))
 
 
 @pytest.fixture()
