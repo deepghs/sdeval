@@ -5,11 +5,11 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sdeval.fidelity.ccip &mdash; sdeval 0.0.1 documentation</title>
+  <title>sdeval.fidelity.ccip &mdash; sdeval 0.0.2 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.0.1
+                0.0.2
               </div>
             
           
@@ -191,13 +191,14 @@
 <h2>CCIPMetrics<a class="headerlink" href="#ccipmetrics" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="sdeval.fidelity.ccip.CCIPMetrics">
-<em class="property">class </em><code class="sig-prename descclassname">sdeval.fidelity.ccip.</code><code class="sig-name descname">CCIPMetrics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">images</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">, </span>List<span class="p">[</span>Union<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'ccip-caformer-24-randaug-pruned'</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">silent</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">tqdm_desc</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sdeval/fidelity/ccip.html#CCIPMetrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdeval.fidelity.ccip.CCIPMetrics" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">sdeval.fidelity.ccip.</code><code class="sig-name descname">CCIPMetrics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">images</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">, </span>List<span class="p">[</span>Union<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">feats</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>numpy.ndarray<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'ccip-caformer-24-randaug-pruned'</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">silent</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">tqdm_desc</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sdeval/fidelity/ccip.html#CCIPMetrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdeval.fidelity.ccip.CCIPMetrics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class for calculating similarity scores between images using the CCIP (Content-Consistent Image Pairwise) metric.</p>
 <p>The <cite>CCIPMetrics</cite> class allows you to calculate the similarity score between a set of images and a reference dataset using the CCIP metric.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>images</strong> (<em>ImagesTyping</em>) – The reference dataset of images for initializing CCIP metrics.</p></li>
+<li><p><strong>feats</strong> (<em>Optional</em><em>[</em><em>np.ndarray</em><em>]</em>) – Feature data of given character, should be (B, 768). When assigned, <code class="docutils literal notranslate"><span class="pre">images</span></code> argument will be ignored.</p></li>
 <li><p><strong>model</strong> (<em>str</em>) – The CCIP model to use for feature extraction. Default is ‘ccip-caformer-24-randaug-pruned’.</p></li>
 <li><p><strong>threshold</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – The threshold for the CCIP metric. If not provided, the default threshold for the chosen model is used.</p></li>
 <li><p><strong>silent</strong> (<em>bool</em>) – If True, suppresses progress bars and additional output during initialization and calculation.</p></li>
@@ -207,7 +208,7 @@
 </dl>
 <dl class="py method">
 <dt id="sdeval.fidelity.ccip.CCIPMetrics.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">images</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">, </span>List<span class="p">[</span>Union<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'ccip-caformer-24-randaug-pruned'</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">silent</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">tqdm_desc</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sdeval/fidelity/ccip.html#CCIPMetrics.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdeval.fidelity.ccip.CCIPMetrics.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">images</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">, </span>List<span class="p">[</span>Union<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">feats</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>numpy.ndarray<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'ccip-caformer-24-randaug-pruned'</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">silent</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">tqdm_desc</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sdeval/fidelity/ccip.html#CCIPMetrics.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdeval.fidelity.ccip.CCIPMetrics.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -258,7 +259,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2023, narugo1992
+        &copy; Copyright 2024, narugo1992
 
     </p>
   </div>
