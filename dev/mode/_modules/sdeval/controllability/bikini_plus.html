@@ -551,7 +551,8 @@
         <span class="p">])</span>
         <span class="k">return</span> <span class="p">((</span><span class="n">vs</span> <span class="o">*</span> <span class="n">ws</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">ws</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 
-<div class="viewcode-block" id="BikiniPlusMetrics.score"><a class="viewcode-back" href="../../../api_doc/controllability/bikini_plus.html#sdeval.controllability.bikini_plus.BikiniPlusMetrics.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">images</span><span class="p">:</span> <span class="n">PromptedImagesTyping</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="BikiniPlusMetrics.score"><a class="viewcode-back" href="../../../api_doc/controllability/bikini_plus.html#sdeval.controllability.bikini_plus.BikiniPlusMetrics.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">images</span><span class="p">:</span> <span class="n">PromptedImagesTyping</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+              <span class="n">mode</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;seq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the average bikini plus score for a set of images.</span>
 
@@ -561,18 +562,27 @@
 <span class="sd">        :type images: PromptedImagesTyping</span>
 <span class="sd">        :param silent: If True, suppresses progress bars and additional output during calculation. Default is False.</span>
 <span class="sd">        :type silent: bool</span>
+<span class="sd">        :param mode: Mode of the return value. Return a float value when ``mean`` is assigned,</span>
+<span class="sd">                    return a numpy array when ``seq`` is assigned. Default is ``mean``.</span>
+<span class="sd">        :type mode: Literal[&#39;mean&#39;, &#39;seq&#39;]</span>
 
 <span class="sd">        :return: The average bikini plus score for the set of images.</span>
-<span class="sd">        :rtype: float</span>
+<span class="sd">        :rtype: Union[float, np.ndarray]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">image_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_yield_images</span><span class="p">(</span><span class="n">images</span><span class="p">))</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">image_list</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Images for calculating bikini plus score not provided - </span><span class="si">{</span><span class="n">images</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_one_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">neg_prompt</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">img</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">neg_prompt</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">image_list</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">silent</span> <span class="k">if</span> <span class="n">silent</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">silent</span><span class="p">)</span>
-        <span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></div></div>
+        <span class="p">])</span>
+        <span class="k">assert</span> <span class="n">score</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">image_list</span><span class="p">),)</span>
+
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;seq&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">score</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">score</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></div></div>
 </pre></div>
 
 

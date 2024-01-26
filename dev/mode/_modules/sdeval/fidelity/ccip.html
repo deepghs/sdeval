@@ -247,7 +247,7 @@
 <span class="sd">        :type mode: Literal[&#39;mean&#39;, &#39;seq&#39;]</span>
 
 <span class="sd">        :return: The similarity score between the reference dataset and the input images.</span>
-<span class="sd">        :rtype: float</span>
+<span class="sd">        :rtype: Union[float, np.ndarray]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">image_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">]</span> <span class="o">=</span> <span class="n">load_images</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">image_list</span><span class="p">:</span>
