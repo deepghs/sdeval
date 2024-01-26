@@ -5,7 +5,7 @@ Overview:
     See `imgutils.metrics.ccip <https://deepghs.github.io/imgutils/main/api_doc/metrics/ccip.html>`_ for more information.
 """
 import warnings
-from typing import List, Optional
+from typing import List, Optional, Literal, Union
 
 import numpy as np
 from PIL import Image
@@ -59,7 +59,8 @@ class CCIPMetrics:
                 raise ValueError(f'Feature shape should be (B, 768), but {feats.shape!r} found actually.')
             self._features = list(feats)
 
-    def score(self, images: ImagesTyping, silent: bool = None) -> float:
+    def score(self, images: ImagesTyping, silent: bool = None,
+              mode: Literal['mean', 'seq'] = 'mean') -> Union[float, np.ndarray]:
         """
         Calculate the similarity score between the reference dataset and a set of input images.
 
@@ -69,6 +70,9 @@ class CCIPMetrics:
         :type images: ImagesTyping
         :param silent: If True, suppresses progress bars and additional output during calculation.
         :type silent: bool
+        :param mode: Mode of the return value. Return a float value when ``mean`` is assigned,
+                    return a numpy array when ``seq`` is assigned. Default is ``mean``.
+        :type mode: Literal['mean', 'seq']
 
         :return: The similarity score between the reference dataset and the input images.
         :rtype: float
@@ -85,5 +89,10 @@ class CCIPMetrics:
 
         diffs = ccip_batch_differences([*self._features, *_features])
         matrix = diffs[:len(self._features), len(self._features):]
+        seq = (matrix < self._threshold).meax(axis=0)
+        assert seq.shape == (len(_features),)
 
-        return (matrix < self._threshold).mean().item()
+        if mode == 'seq':
+            return seq
+        else:
+            return seq.mean().item()
