@@ -4,7 +4,7 @@ Overview:
 """
 import json
 from functools import lru_cache
-from typing import Tuple, Optional, Mapping
+from typing import Tuple, Optional, Mapping, Literal, Union
 
 import numpy as np
 from PIL import Image
@@ -141,7 +141,8 @@ class AICorruptMetrics:
         self.silent = silent
         self.tqdm_desc = tqdm_desc or self.__class__.__name__
 
-    def score(self, images: ImagesTyping, silent: bool = None):
+    def score(self, images: ImagesTyping, silent: bool = None,
+              mode: Literal['mean', 'seq'] = 'mean') -> Union[float, np.ndarray]:
         """
         Calculate the AI image corruptness score for a set of images.
 
@@ -151,16 +152,24 @@ class AICorruptMetrics:
         :type images: ImagesTyping
         :param silent: If True, suppresses progress bars and additional output during calculation.
         :type silent: bool
+        :param mode: Mode of the return value. Return a float value when ``mean`` is assigned,
+                    return a numpy array when ``seq`` is assigned. Default is ``mean``.
+        :type mode: Literal['mean', 'seq']
 
         :return: The AI image corruptness score.
-        :rtype: float
+        :rtype: Union[float, np.ndarray]
         """
         image_list = load_images(images)
         if not image_list:
             raise FileNotFoundError(f'Images for calculating AI corrupt score not provided - {images}.')
 
-        scores = np.array([
+        scores = 1.0 - np.array([
             get_ai_corrupted(image, model_name=self._model_name)['corrupted']
             for image in tqdm(image_list, silent=self.silent if silent is None else silent, desc=self.tqdm_desc)
         ])
-        return 1.0 - scores.mean().item()
+        assert scores.shape == (len(image_list),)
+
+        if mode == 'seq':
+            return scores
+        else:
+            return scores.mean().item()

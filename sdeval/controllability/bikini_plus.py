@@ -379,7 +379,8 @@ class BikiniPlusMetrics:
         ])
         return ((vs * ws).sum() / ws.sum()).item()
 
-    def score(self, images: PromptedImagesTyping, silent: bool = False):
+    def score(self, images: PromptedImagesTyping, silent: bool = False,
+              mode: Literal['mean', 'seq'] = 'mean') -> Union[float, np.ndarray]:
         """
         Calculate the average bikini plus score for a set of images.
 
@@ -389,15 +390,24 @@ class BikiniPlusMetrics:
         :type images: PromptedImagesTyping
         :param silent: If True, suppresses progress bars and additional output during calculation. Default is False.
         :type silent: bool
+        :param mode: Mode of the return value. Return a float value when ``mean`` is assigned,
+                    return a numpy array when ``seq`` is assigned. Default is ``mean``.
+        :type mode: Literal['mean', 'seq']
 
         :return: The average bikini plus score for the set of images.
-        :rtype: float
+        :rtype: Union[float, np.ndarray]
         """
         image_list = list(_yield_images(images))
         if not image_list:
             raise FileNotFoundError(f'Images for calculating bikini plus score not provided - {images}.')
 
-        return np.array([
+        score = np.array([
             self._calculate_one_image(img, prompt, neg_prompt)
             for img, prompt, neg_prompt in tqdm(image_list, silent=self.silent if silent is None else silent)
-        ]).mean().item()
+        ])
+        assert score.shape == (len(image_list),)
+
+        if mode == 'seq':
+            return score
+        else:
+            return score.mean().item()

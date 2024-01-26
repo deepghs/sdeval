@@ -1,3 +1,4 @@
+import glob
 import os.path
 
 import numpy as np
@@ -14,8 +15,18 @@ def ccip_init():
 
 
 @pytest.fixture()
+def ccip_init_files(ccip_init):
+    return glob.glob(os.path.join(ccip_init, '*.jpg'))
+
+
+@pytest.fixture()
 def ccip_x():
     return get_testfile('ccip', 'x')
+
+
+@pytest.fixture()
+def ccip_x_files(ccip_x):
+    return glob.glob(os.path.join(ccip_x, '*.png'))
 
 
 @pytest.fixture()
@@ -24,8 +35,18 @@ def ccip_raw():
 
 
 @pytest.fixture()
+def ccip_raw_files(ccip_raw):
+    return glob.glob(os.path.join(ccip_raw, '*.png'))
+
+
+@pytest.fixture()
 def ccip_trained():
     return get_testfile('ccip', 'trained')
+
+
+@pytest.fixture()
+def ccip_trained_files(ccip_trained):
+    return glob.glob(os.path.join(ccip_trained, '*.png'))
 
 
 @pytest.fixture()
@@ -66,6 +87,29 @@ class TestFidelityCCIP:
         assert ccip_metric.score(ccip_x) <= 0.05
         assert ccip_metric.score(ccip_raw) < 0.9
         assert ccip_metric.score(ccip_trained) >= 0.95
+
+    def test_score_files(self, ccip_metric, ccip_init_files, ccip_x_files, ccip_raw_files, ccip_trained_files):
+        assert ccip_metric.score(ccip_init_files) >= 0.95
+        assert ccip_metric.score(ccip_x_files) <= 0.05
+        assert ccip_metric.score(ccip_raw_files) < 0.9
+        assert ccip_metric.score(ccip_trained_files) >= 0.95
+
+    def test_score_files_seq(self, ccip_metric, ccip_init_files, ccip_x_files, ccip_raw_files, ccip_trained_files):
+        seq = ccip_metric.score(ccip_init_files, mode='seq')
+        assert seq.shape == (len(ccip_init_files),)
+        assert seq.mean().item() >= 0.95
+
+        seq = ccip_metric.score(ccip_x_files, mode='seq')
+        assert seq.shape == (len(ccip_x_files),)
+        assert seq.mean().item() <= 0.05
+
+        seq = ccip_metric.score(ccip_raw_files, mode='seq')
+        assert seq.shape == (len(ccip_raw_files),)
+        assert seq.mean().item() < 0.9
+
+        seq = ccip_metric.score(ccip_trained_files, mode='seq')
+        assert seq.shape == (len(ccip_trained_files),)
+        assert seq.mean().item() >= 0.95
 
     def test_score_amiya(self, ccip_amiya_feats, ccip_amiya_pos, ccip_amiya_neg):
         assert ccip_amiya_feats.score(ccip_amiya_pos) >= 0.65
