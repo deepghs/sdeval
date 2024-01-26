@@ -89,7 +89,7 @@ class CCIPMetrics:
 
         diffs = ccip_batch_differences([*self._features, *_features])
         matrix = diffs[:len(self._features), len(self._features):]
-        seq = (matrix < self._threshold).meax(axis=0)
+        seq = (matrix < self._threshold).mean(axis=0)
         assert seq.shape == (len(_features),)
 
         if mode == 'seq':
