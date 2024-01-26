@@ -2,6 +2,7 @@ import os
 import pathlib
 import shutil
 
+import numpy as np
 import pytest
 from hbutils.system import TemporaryDirectory
 from imgutils.data import load_image
@@ -97,6 +98,13 @@ class TestControllabilityBikiniPlus:
             0.8469945459720423, 0.8399211360890133, 0.8098674415860692, 0.8363121274014674, 0.8389884182718645,
             0.8555319857366422, 0.8579074531926136, 0.8362479325036504, 0.839586421120691, 0.83640841923855,
         ])
+
+    def test_score_files(self, bikini_plus_metrics, bikini_image_files):
+        assert np.isclose(bikini_plus_metrics.score(bikini_image_files, mode='seq'), np.array([
+            0.8837757309353425, 0.8933908126091592, 0.9055491415894145, 0.8882521965374851, 0.8927720615148468,
+            0.8469945459720423, 0.8399211360890133, 0.8098674415860692, 0.8363121274014674, 0.8389884182718645,
+            0.8555319857366422, 0.8579074531926136, 0.8362479325036504, 0.839586421120691, 0.83640841923855,
+        ])).all()
 
     def test_score_dirs(self, bikini_image_dirs, bikini_plus_metrics):
         assert [bikini_plus_metrics.score(img_file) for img_file in bikini_image_dirs] == pytest.approx([

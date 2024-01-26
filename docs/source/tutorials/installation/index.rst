@@ -1,7 +1,7 @@
 Installation
 ===================
 
-sdeval is currently hosted on PyPI. It required python >= 3.7.
+sdeval is currently hosted on PyPI. It required python >= 3.8.
 
 You can simply install sdeval from PyPI with the following command:
 
