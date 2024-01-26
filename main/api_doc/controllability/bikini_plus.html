@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sdeval.controllability.bikini_plus &mdash; sdeval 0.0.3 documentation</title>
+  <title>sdeval.controllability.bikini_plus &mdash; sdeval 0.0.4 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.0.3
+                0.0.4
               </div>
             
           
@@ -212,7 +212,7 @@
 
 <dl class="py method">
 <dt id="sdeval.controllability.bikini_plus.BikiniPlusMetrics.score">
-<code class="sig-name descname">score</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">images</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Tuple<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>PIL.Image.Image<span class="p">, </span>Tuple<span class="p">[</span>str<span class="p">, </span>str<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>str<span class="p">, </span>List<span class="p">[</span>Union<span class="p">[</span>Tuple<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>PIL.Image.Image<span class="p">, </span>Tuple<span class="p">[</span>str<span class="p">, </span>str<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">silent</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sdeval/controllability/bikini_plus.html#BikiniPlusMetrics.score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdeval.controllability.bikini_plus.BikiniPlusMetrics.score" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">score</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">images</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Tuple<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>PIL.Image.Image<span class="p">, </span>Tuple<span class="p">[</span>str<span class="p">, </span>str<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>str<span class="p">, </span>List<span class="p">[</span>Union<span class="p">[</span>Tuple<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>PIL.Image.Image<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>PIL.Image.Image<span class="p">, </span>Tuple<span class="p">[</span>str<span class="p">, </span>str<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><span class="p">, </span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">silent</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">mode</span><span class="p">:</span> <span class="n">Literal<span class="p">[</span>mean<span class="p">, </span>seq<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">'mean'</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>float<span class="p">, </span>numpy.ndarray<span class="p">]</span><a class="reference internal" href="../../_modules/sdeval/controllability/bikini_plus.html#BikiniPlusMetrics.score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sdeval.controllability.bikini_plus.BikiniPlusMetrics.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the average bikini plus score for a set of images.</p>
 <p>This method computes the average bikini plus score for a set of images based on the provided prompts.</p>
 <dl class="field-list simple">
@@ -220,13 +220,15 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>images</strong> (<em>PromptedImagesTyping</em>) – The set of images with associated positive and negative prompts.</p></li>
 <li><p><strong>silent</strong> (<em>bool</em>) – If True, suppresses progress bars and additional output during calculation. Default is False.</p></li>
+<li><p><strong>mode</strong> (<em>Literal</em><em>[</em><em>'mean'</em><em>, </em><em>'seq'</em><em>]</em>) – Mode of the return value. Return a float value when <code class="docutils literal notranslate"><span class="pre">mean</span></code> is assigned,
+return a numpy array when <code class="docutils literal notranslate"><span class="pre">seq</span></code> is assigned. Default is <code class="docutils literal notranslate"><span class="pre">mean</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The average bikini plus score for the set of images.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+<dd class="field-odd"><p>Union[float, np.ndarray]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -287,7 +289,6 @@
                 </dl>
                 <dl>
                     <dt>Branches</dt>
-                        <dd><a href="../../../dev/mode/api_doc/controllability/bikini_plus.html">dev/mode</a></dd>
                         <dd><a href="bikini_plus.html">main</a></dd>
                 </dl>
         </div>
