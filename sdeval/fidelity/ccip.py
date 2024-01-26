@@ -75,7 +75,7 @@ class CCIPMetrics:
         :type mode: Literal['mean', 'seq']
 
         :return: The similarity score between the reference dataset and the input images.
-        :rtype: float
+        :rtype: Union[float, np.ndarray]
         """
         image_list: List[Image.Image] = load_images(images)
         if not image_list:
