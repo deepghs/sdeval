@@ -217,20 +217,34 @@ class TaggerACModel:
 def _deepdanbooru_tagging(image: Image.Image, use_real_name: bool = False,
                           general_threshold: float = 0.0, character_threshold: float = 0.0, **kwargs):
     _ = kwargs
-    _, features, characters = get_deepdanbooru_tags(image, use_real_name, general_threshold, character_threshold)
+    _, features, characters = get_deepdanbooru_tags(
+        image=image,
+        use_real_name=use_real_name,
+        general_threshold=general_threshold,
+        character_threshold=character_threshold
+    )
     return {**features, **characters}
 
 
 def _wd14_tagging(image: Image.Image, model_name: str,
                   general_threshold: float = 0.0, character_threshold: float = 0.0, **kwargs):
     _ = kwargs
-    _, features, characters = get_wd14_tags(image, model_name, general_threshold, character_threshold)
+    _, features, characters = get_wd14_tags(
+        image=image,
+        model_name=model_name,
+        general_threshold=general_threshold,
+        character_threshold=character_threshold
+    )
     return {**features, **characters}
 
 
 def _mldanbooru_tagging(image: Image.Image, use_real_name: bool = False, general_threshold: float = 0.0, **kwargs):
     _ = kwargs
-    features = get_mldanbooru_tags(image, use_real_name, general_threshold)
+    features = get_mldanbooru_tags(
+        image=image,
+        use_real_name=use_real_name,
+        threshold=general_threshold
+    )
     return features
 
 
