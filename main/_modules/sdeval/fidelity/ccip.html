@@ -232,6 +232,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">feats</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CCIPMetrics.score"><a class="viewcode-back" href="../../../api_doc/fidelity/ccip.html#sdeval.fidelity.ccip.CCIPMetrics.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">images</span><span class="p">:</span> <span class="n">ImagesTyping</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+              <span class="n">algo</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="s1">&#39;diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;same&#39;</span><span class="p">,</span>
               <span class="n">mode</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;seq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the similarity score between the reference dataset and a set of input images.</span>
@@ -242,6 +243,9 @@
 <span class="sd">        :type images: ImagesTyping</span>
 <span class="sd">        :param silent: If True, suppresses progress bars and additional output during calculation.</span>
 <span class="sd">        :type silent: bool</span>
+<span class="sd">        :param algo: Algorithm of the return value. Return float value represent same-or-not ratio</span>
+<span class="sd">                    when using ``same``, return mean difference when using ``diff``. Default is ``same``.</span>
+<span class="sd">        :type algo: Literal[&#39;same&#39;, &#39;diff&#39;]</span>
 <span class="sd">        :param mode: Mode of the return value. Return a float value when ``mean`` is assigned,</span>
 <span class="sd">                    return a numpy array when ``seq`` is assigned. Default is ``mean``.</span>
 <span class="sd">        :type mode: Literal[&#39;mean&#39;, &#39;seq&#39;]</span>
@@ -261,7 +265,10 @@
 
         <span class="n">diffs</span> <span class="o">=</span> <span class="n">ccip_batch_differences</span><span class="p">([</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">,</span> <span class="o">*</span><span class="n">_features</span><span class="p">])</span>
         <span class="n">matrix</span> <span class="o">=</span> <span class="n">diffs</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">):]</span>
-        <span class="n">seq</span> <span class="o">=</span> <span class="p">(</span><span class="n">matrix</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">algo</span> <span class="o">==</span> <span class="s1">&#39;same&#39;</span><span class="p">:</span>
+            <span class="n">seq</span> <span class="o">=</span> <span class="p">(</span><span class="n">matrix</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">seq</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">seq</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_features</span><span class="p">),)</span>
 
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;seq&#39;</span><span class="p">:</span>
