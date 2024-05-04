@@ -60,6 +60,7 @@ class CCIPMetrics:
             self._features = list(feats)
 
     def score(self, images: ImagesTyping, silent: bool = None,
+              algo: Literal['same', 'diff'] = 'same',
               mode: Literal['mean', 'seq'] = 'mean') -> Union[float, np.ndarray]:
         """
         Calculate the similarity score between the reference dataset and a set of input images.
@@ -70,6 +71,9 @@ class CCIPMetrics:
         :type images: ImagesTyping
         :param silent: If True, suppresses progress bars and additional output during calculation.
         :type silent: bool
+        :param algo: Algorithm of the return value. Return float value represent same-or-not ratio
+                    when using ``same``, return mean difference when using ``diff``. Default is ``same``.
+        :type algo: Literal['same', 'diff']
         :param mode: Mode of the return value. Return a float value when ``mean`` is assigned,
                     return a numpy array when ``seq`` is assigned. Default is ``mean``.
         :type mode: Literal['mean', 'seq']
@@ -89,7 +93,10 @@ class CCIPMetrics:
 
         diffs = ccip_batch_differences([*self._features, *_features])
         matrix = diffs[:len(self._features), len(self._features):]
-        seq = (matrix < self._threshold).mean(axis=0)
+        if algo == 'same':
+            seq = (matrix < self._threshold).mean(axis=0)
+        else:
+            seq = matrix.mean(axis=0)
         assert seq.shape == (len(_features),)
 
         if mode == 'seq':
